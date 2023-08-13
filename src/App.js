@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import  theme from "./theme";
+import Dashboard from "./screen/dashboard/Dashboard";
+import MiniDrawer from "./components/MiniDrawer";
+
 
 function App() {
+
+  const [isSidebar, setIsSidebar] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <MiniDrawer  />
+          <main className="content">
+            {/* <Topbar setIsSidebar={setIsSidebar} /> */}
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+             
+            </Routes>
+          </main>
+        </div>
+      </ThemeProvider>
+  
   );
 }
 
